@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: repo-atomic-nucleus
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+type: Opaque
+stringData:
+  name: atomic-nucleus.com
+  url: https://github.com/atomic-nucleus/atomic-nucleus.com/
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/atomic-nucleus/atomic-nucleus.com/
+    path: gitops/bootstrap/argocd
+  destination:
+    name: in-cluster
+    namespace: argocd
+  ignoreDifferences:
+    - group: argoproj.io
+      kind: Application
+      jsonPointers:
+        - /status
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      selfHeal: true
+    syncOptions:
+      - allowEmpty=true
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/atomic-nucleus/atomic-nucleus.com/
+    path: gitops/apps
+  destination:
+    name: in-cluster
+    namespace: argocd
+  ignoreDifferences:
+    - group: argoproj.io
+      kind: Application
+      jsonPointers:
+        - /status
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - allowEmpty=true
