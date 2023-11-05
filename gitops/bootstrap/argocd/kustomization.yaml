@@ -8,7 +8,7 @@ namespace: argocd
 resources:
   - ./ingress.yaml
   - ./namespace.yaml
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.3/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.6/manifests/install.yaml
 patchesStrategicMerge:
   - ./configmap.argocd-cm.patch.yaml
   - ./configmap.argocd-cmd-params-cm.patch.yaml
