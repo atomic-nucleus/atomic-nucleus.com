@@ -12,3 +12,5 @@ helmCharts:
       serviceAccount:
         create: true
         name: cert-manager
+resources:
+  - ./cluster-issuers.yaml

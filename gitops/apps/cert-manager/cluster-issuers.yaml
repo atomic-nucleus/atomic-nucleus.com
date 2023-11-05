@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-issuer
+  namespace: cert-manager
+spec:
+  ca:
+    # note: a trusted CA must be configured in the ca-key-pair secret (see below for template)
+    secretName: ca-key-pair
+
+#
+# ca-key-pair example
+#
+
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: ca-key-pair
+#   namespace: cert-manager
+# stringData:
+#   tls.crt: |-
+#     -----BEGIN CERTIFICATE-----
+#     ...
+#     -----END CERTIFICATE-----
+#   tls.key: |-
+#     -----BEGIN RSA PRIVATE KEY-----
+#     ...
+#     -----END RSA PRIVATE KEY-----
