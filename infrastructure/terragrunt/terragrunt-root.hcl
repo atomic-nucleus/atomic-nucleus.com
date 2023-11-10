@@ -25,7 +25,7 @@ remote_state {
     if_exists = "overwrite"
   }
 
-  config  = {
+  config = {
     key                  = "${path_relative_to_include("root")}.tfstate"
     container_name       = "${local.env_config.locals.backend_storage_container_name}"
     resource_group_name  = "${local.env_config.locals.backend_resource_group_name}"

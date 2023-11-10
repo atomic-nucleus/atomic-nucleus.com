@@ -19,14 +19,14 @@ data "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_dns_zone" "main" {
-  name = var.dns_zone_name
+  name = var.name
 
   resource_group_name = data.azurerm_resource_group.main.name
-  tags                = merge(data.azurerm_resource_group.main.tags, var.dns_zone_tags)
+  tags                = merge(data.azurerm_resource_group.main.tags, var.tags)
 }
 
 resource "azurerm_dns_a_record" "main" {
-  for_each = { for a_record in var.dns_zone_a_records : a_record.name => a_record }
+  for_each = { for a_record in var.a_records : a_record.name => a_record }
 
   zone_name = azurerm_dns_zone.main.name
 
@@ -39,7 +39,7 @@ resource "azurerm_dns_a_record" "main" {
 }
 
 resource "azurerm_dns_ns_record" "main" {
-  for_each = { for ns_record in var.dns_zone_ns_records : ns_record.name => ns_record }
+  for_each = { for ns_record in var.ns_records : ns_record.name => ns_record }
 
   zone_name = azurerm_dns_zone.main.name
 

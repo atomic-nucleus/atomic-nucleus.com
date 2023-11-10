@@ -2,11 +2,11 @@ variable "resource_group_name" {
   type = string
 }
 
-variable "dns_zone_name" {
+variable "name" {
   type = string
 }
 
-variable "dns_zone_a_records" {
+variable "a_records" {
   type = set(object({
     name    = string
     records = set(string)
@@ -16,7 +16,7 @@ variable "dns_zone_a_records" {
   default = []
 }
 
-variable "dns_zone_ns_records" {
+variable "ns_records" {
   type = set(object({
     name    = string
     records = set(string)
@@ -26,7 +26,7 @@ variable "dns_zone_ns_records" {
   default = []
 }
 
-variable "dns_zone_tags" {
+variable "tags" {
   type    = map(string)
   default = {}
 }

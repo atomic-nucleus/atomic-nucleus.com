@@ -22,10 +22,10 @@ locals {
 
 inputs = {
   resource_group_name = "rg-shared"
-  dns_zone_name       = "atomic-nucleus.com"
-  dns_zone_tags       = local.env_config.locals.tags
+  name                = "atomic-nucleus.com"
+  tags                = local.env_config.locals.tags
 
-  dns_zone_ns_records = [
+  ns_records = [
     {
       name    = "local"
       records = dependency.local_dns_zone.outputs.name_servers
