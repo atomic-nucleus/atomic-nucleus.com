@@ -12,7 +12,7 @@ locals {
 }
 
 inputs = {
-  resource_group_name = "rg-shared"
+  resource_group_name = "DefaultResourceGroup-CCAN"
 
   name = "local.atomic-nucleus.com"
   tags = merge(local.env_config.locals.tags, {})

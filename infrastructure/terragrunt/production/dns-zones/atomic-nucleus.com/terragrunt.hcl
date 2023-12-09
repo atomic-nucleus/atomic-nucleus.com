@@ -21,7 +21,7 @@ locals {
 }
 
 inputs = {
-  resource_group_name = "rg-shared"
+  resource_group_name = "DefaultResourceGroup-CCAN"
   name                = "atomic-nucleus.com"
   tags                = local.env_config.locals.tags
 
